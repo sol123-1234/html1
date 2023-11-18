@@ -1,0 +1,9 @@
+{
+  "hello": "你好",
+  "stake": "质押",
+  "Transaction Success": "交易成功",
+  "Failed": "失败",
+  "View on site": "请在 {{site}} 查看",
+  "Transaction Submit": "交易已提交",
+  "Please connect wallet": "请链接钱包"
+}

@@ -1,0 +1,29 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "./reset.css";
+@import "./variables.css";
+
+body {
+  font-variant-east-asian: traditional;
+  -moz-user-select: none; /*火狐*/
+  -webkit-user-select: none; /*webkit浏览器*/
+  -ms-user-select: none; /*IE10*/
+  -khtml-user-select: none; /*早期浏览器*/
+  user-select: none;
+}
+::-webkit-scrollbar {
+  display: none;
+  width: 0 !important;
+  height: 0 !important;
+  color: transparent;
+}
+
+#root {
+  background: #1c1c1c;
+  background-size: 100% 100%;
+  background-repeat:no-repeat;
+  padding-bottom: 50px;
+}
+

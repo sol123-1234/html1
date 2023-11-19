@@ -63,17 +63,6 @@ const Swap = () => {
 
   const dependenceIsUsdt = isEqual(dependenceField, usdtData)
 
-  // useEffect(() => {
-
-  //   if (dependenceIsUsdt) {
-  //     setDependenceField(usdtData)
-  //     setIndependenceField(ausdData)
-  //   } else {
-  //     setDependenceField(ausdData)
-  //     setIndependenceField(usdtData)
-  //   }
-  // }, [ausdData, dependenceIsUsdt, usdtData])
-
   const dependenceIsApprove = dependenceIsUsdt ? usdtIsApprove : ausdIsApprove
 
   const [amount, setAmount] = useState('')

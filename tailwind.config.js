@@ -6,6 +6,13 @@ export default {
   ],
   theme: {
     extend: {},
+    colors: ({ colors }) => ({
+      ...colors,
+      'primary': '#FFCC01'
+    }),
+    screens: {
+      'lg': '768px'
+    }
   },
   plugins: [],
   corePlugins: {

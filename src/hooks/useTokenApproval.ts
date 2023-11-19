@@ -37,7 +37,7 @@ export const useTokenApproval = (token: Address, spender: Address) => {
   const handleApprove = async (callback?: () => void) => {
     setApproveLoading(true)
 
-    const result = await fetchWithCatchTxError(() =>
+    await fetchWithCatchTxError(() =>
       callWithGasPrice(tokenContract, 'approve', [spender, MaxUint256]),
     )
     refetch()

@@ -2,6 +2,7 @@ import { ToastContainer } from 'react-toastify'
 import { Outlet, useMatches } from 'react-router-dom'
 import { useEffect } from 'react'
 import useLocal from '@/hooks/useLocal'
+import Header from '@/components/Header'
 
 export const AppWrapper: React.FC<React.PropsWithChildren> = () => {
   // 双语
@@ -16,7 +17,8 @@ export const AppWrapper: React.FC<React.PropsWithChildren> = () => {
   return (
     <>
       <ToastContainer />
-      <div className="px-3.5 py-5">
+      <div>
+        <Header />
         <Outlet />
       </div>
     </>

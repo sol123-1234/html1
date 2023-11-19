@@ -1,9 +1,7 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { Button } from 'antd-mobile'
-import { useTranslation } from 'react-i18next'
+import change from '@/assets/change.png'
 
 export default function CustomConnectButton() {
-  const { t } = useTranslation()
   return (
     <ConnectButton.Custom>
       {({ account, chain, openAccountModal, openConnectModal, authenticationStatus, mounted }) => {
@@ -26,26 +24,24 @@ export default function CustomConnectButton() {
             {(() => {
               if (!connected) {
                 return (
-                  <Button
-                    color="default"
-                    className="px-3 py-2 text-sm bg-transparent border border-solid rounded-lg border-theme-primary text-theme-primary"
+                  <button
+                    type="button"
                     onClick={openConnectModal}
-                    size="small"
+                    className="flex items-center justify-center gap-2 px-5 py-3 border-none rounded-full outline-none lg:py-5 lg:px-9 bg-primary"
                   >
-                    {t('Connect Wallet')}
-                  </Button>
+                    <div>链接钱包</div>
+                    <img src={change} alt="" />
+                  </button>
                 )
               }
               return (
-                <div style={{ display: 'flex', gap: 12 }}>
-                  <Button
-                    onClick={openAccountModal}
-                    type="button"
-                    className="px-3 py-2 text-sm bg-transparent border border-solid rounded-lg border-theme-primary text-theme-primary"
-                  >
-                    {account.displayName}
-                  </Button>
-                </div>
+                <button
+                  type="button"
+                  onClick={openAccountModal}
+                  className="flex items-center justify-center gap-2 px-5 py-3 border-none rounded-full outline-none lg:py-5 lg:px-9 bg-primary"
+                >
+                  {account.displayName}
+                </button>
               )
             })()}
           </div>

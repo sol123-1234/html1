@@ -5,6 +5,7 @@ import {
   mainnet,
   arbitrum,
   arbitrumGoerli,
+  sepolia
 } from 'wagmi/chains';
 
 const chainMap: Record<number, Chain> = {
@@ -13,6 +14,7 @@ const chainMap: Record<number, Chain> = {
   1: mainnet,
   42161: arbitrum,
   421613: arbitrumGoerli,
+  11155111: sepolia
 };
 
 export default chainMap;

@@ -2,10 +2,8 @@ import { Toast } from 'antd-mobile';
 import { useCallback, useState } from 'react';
 import { Address, Hash } from 'viem';
 import { SendTransactionResult, WaitForTransactionResult, waitForTransaction } from 'wagmi/actions';
-import { useTranslation } from 'react-i18next';
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 import { useWalletClient } from 'wagmi';
-import useToast from './useToast';
 import { pareseJson, renderJson } from '@/utils/json';
 
 /**
@@ -23,8 +21,6 @@ export type CatchTxErrorReturn = {
 
 
 export default function useCatchTxError(): CatchTxErrorReturn {
-  const { toastSuccess, toastError } = useToast();
-  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [txResponseLoading, setTxResponseLoading] = useState(false);
   const { openConnectModal } = useConnectModal();
@@ -33,7 +29,6 @@ export default function useCatchTxError(): CatchTxErrorReturn {
 
   const handleError = useCallback((error: any) => {
     if (!walletClient?.account) {
-      toastError('', t('Please connect wallet'));
       openConnectModal();
     } else {
       let err = null
@@ -43,13 +38,12 @@ export default function useCatchTxError(): CatchTxErrorReturn {
         Toast.show(err.cause.reason || err.shortMessage);
       }
     }
-  }, [openConnectModal, t, toastError, walletClient?.account]);
+  }, [openConnectModal, walletClient?.account]);
 
   const handleTxError = useCallback((error: any, hash: Address) => {
     console.error(error);
     const err = parseError(error);
-    toastError(hash, `${t('Failed')} : ${err?.cause?.reason || err?.shortMessage || 'Some error happend'}`);
-  }, [t, toastError]);
+  }, []);
 
   const fetchTxResponse = useCallback(
     async (callTx: () => Promise<SendTransactionResult | Hash>): Promise<SendTransactionResult> => {
@@ -59,7 +53,7 @@ export default function useCatchTxError(): CatchTxErrorReturn {
         setTxResponseLoading(true);
         tx = await callTx();
         const hash = typeof tx === 'string' ? tx : tx.hash;
-        toastSuccess(hash, t('Transaction Submit'));
+        // toastSuccess(hash, t('Transaction Submit'));
         return { hash };
       } catch (error: any) {
         handleError(error);
@@ -69,7 +63,7 @@ export default function useCatchTxError(): CatchTxErrorReturn {
 
       return null;
     },
-    [handleError, t, toastSuccess],
+    [handleError],
   );
 
 
@@ -84,7 +78,7 @@ export default function useCatchTxError(): CatchTxErrorReturn {
         const receipt = await waitForTransaction({
           hash,
         });
-        toastSuccess(hash, t('Transaction Success'));
+        // toastSuccess(hash, t('Transaction Success'));
         return receipt;
       } catch (error: any) {
         if (!tx) {
@@ -98,7 +92,7 @@ export default function useCatchTxError(): CatchTxErrorReturn {
 
       return null;
     },
-    [handleError, handleTxError, t, toastSuccess],
+    [handleError, handleTxError],
   );
 
   return {

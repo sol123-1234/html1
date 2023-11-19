@@ -7,4 +7,8 @@ export interface Addresses {
 
 export const getAddressFromMap = (address: Addresses, chainId: number = env.chainId): `0x${string}` => address[chainId];
 
-export const getIdoStakeAddress = (chainId: number = env.chainId) => getAddressFromMap(addresses.idoStake, chainId);
+export const getSwapAddress = (chainId: number = env.chainId) => getAddressFromMap(addresses.swap, chainId);
+
+export const getUsdtAddress = (chainId: number = env.chainId) => getAddressFromMap(addresses.usdt, chainId);
+
+export const getAusdAddress = (chainId: number = env.chainId) => getAddressFromMap(addresses.ausd, chainId);

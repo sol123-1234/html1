@@ -40,7 +40,7 @@ const Swap = () => {
   const ausdData = useAusd()
 
   const [dependenceAddress, setDependenceAddress] = useState<Address>(usdtData.address)
-  const [independenceAddress, setIndependenceAddress] = useState<Address>(ausdData.address)
+  const [, setIndependenceAddress] = useState<Address>(ausdData.address)
 
   const dependenceField = dependenceAddress === usdtData.address ? usdtData : ausdData
   const independenceField = dependenceAddress === usdtData.address ? ausdData : usdtData

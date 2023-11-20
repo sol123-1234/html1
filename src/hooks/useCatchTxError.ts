@@ -42,7 +42,9 @@ export default function useCatchTxError(): CatchTxErrorReturn {
 
   const handleTxError = useCallback((error: any, hash: Address) => {
     console.error(error);
-    const err = parseError(error);
+    // const err = parseError(error);
+    console.log(hash);
+
   }, []);
 
   const fetchTxResponse = useCallback(

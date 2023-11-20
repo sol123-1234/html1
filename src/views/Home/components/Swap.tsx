@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Address, useAccount } from 'wagmi'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
-import { FetchBalanceResult, FetchTokenResult } from 'wagmi/actions'
+import { FetchBalanceResult } from 'wagmi/actions'
 import { isEqual } from 'lodash'
 import { Button, Input, Toast } from 'antd-mobile'
 import b from '@/assets/b.png'
@@ -30,8 +30,6 @@ const tabs = [
 ]
 
 const swapAddress = getSwapAddress()
-
-type TokenData = ReturnType<typeof useAusd>
 
 const Swap = () => {
   const { openConnectModal } = useConnectModal()

@@ -1,6 +1,6 @@
 export default {
   swap: {
-    11155111: '0x5B38Da6a701c568545dCfcB03FcB875f56beddC4',
+    11155111: '0x75dc365DFB06FE975bE9619Da49B89128a4e9542',
     1: '0xF5c07c80816C38DDca01494867B40c995D21b7e9',
   },
   usdt: {

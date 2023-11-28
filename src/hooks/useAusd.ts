@@ -10,6 +10,9 @@ export default function useAusd() {
     address: ausdAddress,
   })
 
+  console.log(ausdToken);
+
+
   const { data: ausdBalance } = useBalance({
     address,
     token: ausdAddress,
@@ -19,6 +22,7 @@ export default function useAusd() {
 
   return {
     ...ausdBalance,
-    ...ausdToken
+    ...ausdToken,
+    symbol: 'AUSD'
   }
 } 

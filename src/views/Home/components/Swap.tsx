@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Address, useAccount } from 'wagmi'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
-import { FetchBalanceResult } from 'wagmi/actions'
 import { isEqual } from 'lodash'
 import { Button, Input, SpinLoading, Toast } from 'antd-mobile'
 import exchange from '@/assets/swapChange.png'

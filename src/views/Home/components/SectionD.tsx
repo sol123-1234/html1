@@ -10,11 +10,11 @@ const SectionD = () => {
         <div className="flex-1 px-6 lg:px-0">
           <div className="text-base lg:text-3xl">链上地址</div>
           <div className="flex items-baseline justify-between mt-5 lg:mt-[55px] border-b border-solid border-[#C9C9C9] pb-10">
-            <div className="text-xs lg:text-2xl mr-8 lg:mr-[89px]">Coinbase Prime</div>
+            {/* <div className="text-xs lg:text-2xl mr-8 lg:mr-[89px]">Coinbase Prime</div> */}
             <AddressCompose name="OUSG.eth" address="0xf6..856c" />
           </div>
           <div className="flex items-baseline justify-between mt-5 lg:mt-[55px] pb-5 lg:pb-10 lg:border-none border-b border-solid border-[#C9C9C9]">
-            <div className="text-xs lg:text-2xl mr-[85px] lg:mr-[190px]">OUSG</div>
+            {/* <div className="text-xs lg:text-2xl mr-[85px] lg:mr-[190px]">OUSG</div> */}
             <div className="flex-1">
               <AddressCompose name="以太坊" address="0xf6..856c" />
               <div className="mt-10">
@@ -52,9 +52,7 @@ const AddressCompose: React.FC<{
       <div>
         <img src={copy} className="w-3 lg:w-6" alt="" />
       </div>
-      <div>
-        <img src={share} className="w-3 lg:w-6" alt="" />
-      </div>
+      <div>{/* <img src={share} className="w-3 lg:w-6" alt="" /> */}</div>
     </div>
   </div>
 )

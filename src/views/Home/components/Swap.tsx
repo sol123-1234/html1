@@ -83,13 +83,9 @@ const Swap = () => {
 
   // eslint-disable-next-line consistent-return
   const swap = async () => {
-    // if (dependenceIsUsdt) {
-    //   if (amount > usdtData?.formatted) {
-    //     return Toast.show(`${dependenceField.symbol}余额不足`)
-    //   }
-    // } else if (amount > ausdData.formatted) {
-    //   return Toast.show(`${dependenceField.symbol}余额不足`)
-    // }
+    if (amount > dependenceField.formatted) {
+      return Toast.show(`${dependenceField.symbol}余额不足`)
+    }
 
     if (dependenceIsUsdt) {
       await exchangeToA(toWei(amount, usdtData.decimals))

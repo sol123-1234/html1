@@ -1,12 +1,13 @@
 import { useAccount, useBalance, useToken } from "wagmi";
 import { getAusdAddress } from "@/utils/addressHelpers";
+import icon from '@/assets/b.png'
 
 const ausdAddress = getAusdAddress()
 
 export default function useAusd() {
   const { address, isConnected } = useAccount()
 
-  const { data: ausdToken } = useToken({
+  const { data: ausdToken, isLoading } = useToken({
     address: ausdAddress,
   })
 
@@ -22,6 +23,8 @@ export default function useAusd() {
   return {
     ...ausdBalance,
     ...ausdToken,
-    symbol: 'AUSD'
+    // symbol: 'AUSD',
+    isLoading,
+    icon
   }
 } 

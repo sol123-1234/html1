@@ -1,12 +1,13 @@
 import { useAccount, useBalance, useToken } from "wagmi";
 import { getUsdtAddress } from "@/utils/addressHelpers";
+import icon from '@/assets/USDT.png'
 
 const usdtAddress = getUsdtAddress()
 
 export default function useUsdt() {
   const { address, isConnected } = useAccount()
 
-  const { data: usdtToken } = useToken({
+  const { data: usdtToken, isLoading } = useToken({
     address: usdtAddress,
   })
 
@@ -20,6 +21,8 @@ export default function useUsdt() {
 
   return {
     ...usdtBalance,
-    ...usdtToken
+    ...usdtToken,
+    icon,
+    isLoading
   }
 } 

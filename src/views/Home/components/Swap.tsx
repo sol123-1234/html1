@@ -3,8 +3,7 @@ import { Address, useAccount } from 'wagmi'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { FetchBalanceResult } from 'wagmi/actions'
 import { isEqual } from 'lodash'
-import { Button, Input, Toast } from 'antd-mobile'
-import b from '@/assets/b.png'
+import { Button, Input, SpinLoading, Toast } from 'antd-mobile'
 import exchange from '@/assets/swapChange.png'
 import useUsdt from '@/hooks/useUsdt'
 import useAusd from '@/hooks/useAusd'
@@ -28,6 +27,8 @@ const tabs = [
     name: '赎回',
   },
 ]
+
+type TokenData = ReturnType<typeof useAusd>
 
 const swapAddress = getSwapAddress()
 
@@ -154,7 +155,7 @@ const SwapTab: React.FC<{ selectedTab: number }> = ({ selectedTab }) => {
 }
 
 const InputField: React.FC<{
-  token: FetchBalanceResult
+  token: TokenData
   className?: string
   value: string
   setValue: React.Dispatch<React.SetStateAction<string>>
@@ -170,8 +171,14 @@ const InputField: React.FC<{
           onChange={(e) => setValue(e)}
         />
         <div className="flex items-center gap-2">
-          <img className="w-4 lg:w-[22px]" src={b} alt="" />
-          <div className="text-[#292929] text-sm lg:text-xl">{token?.symbol || ''}</div>
+          {token.isLoading ? (
+            <SpinLoading />
+          ) : (
+            <>
+              <img className="w-4 lg:w-[22px]" src={token.icon} alt="" />
+              <div className="text-[#292929] text-sm lg:text-xl">{token?.symbol || ''}</div>
+            </>
+          )}
         </div>
       </div>
     </div>

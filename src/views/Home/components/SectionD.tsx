@@ -1,5 +1,5 @@
 import copy from '@/assets/copy.png'
-import share from '@/assets/share.png'
+// import share from '@/assets/share.png'
 import x from '@/assets/x.png'
 import t from '@/assets/t.png'
 

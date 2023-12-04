@@ -46,7 +46,7 @@ const AddressCompose: React.FC<{
   name: string
   address: string
 }> = ({ name, address }) => (
-  <div className="flex items-center justify-between flex-1 text-sm lg:text-base">
+  <div className="flex items-center justify-between flex-1 text-base lg:text-base">
     <div className="text-[#888888]">{name}</div>
     <div className="flex items-center gap-4 lg:gap-[30px]">
       <div>{address}</div>

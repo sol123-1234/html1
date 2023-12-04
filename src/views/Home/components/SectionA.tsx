@@ -45,11 +45,11 @@ const SectionA = () => {
       <div className="lg:w-[1200px] m-auto lg:flex justify-between overflow-hidden">
         <div className="lg:w-[700px] text-center lg:text-left px-7">
           <div className="mt-[44px] lg:mt-[150px] text-[26px] lg:text-[52px]">AUSD是自动增值的稳定币</div>
-          <div className="mt-6 text-sm lg:mt-14 lg:text-lg">与美元1:1锚定，无需质押，且8.2%年化收益率。</div>
-          <div className="text-sm leading-8 mt-9 lg:mt-24 lg:text-lg">
+          <div className="mt-6 text-base lg:mt-14 lg:text-lg">与美元1:1锚定，无需质押，且8.2%年化收益率。</div>
+          <div className="text-base leading-8 mt-9 lg:mt-24 lg:text-lg">
             底层资产由到期日在6个月内的美国国债组成, AUSD 采用独特的 <br className="hidden lg:block" /> Rebase 机制.
           </div>
-          <div className="text-sm mt-9 lg:mt-24 lg:text-lg">
+          <div className="text-base mt-9 lg:mt-24 lg:text-lg">
             根据美国国债收益率,每秒增加用户的AUSD 的数量，并实现资产 持续增值。
           </div>
           <div className="flex items-center justify-between mt-[96px]">

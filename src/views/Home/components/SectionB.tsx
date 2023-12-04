@@ -28,7 +28,7 @@ const WalletList = () => {
   const list = [imtoken, metamsk, coinbase, gnosis, walletConnect, fireBlocks, zodia]
   return (
     <>
-      <div className="-mt-5 text-center lg:text-left">
+      <div className="-mt-5 text-center lg:mt-20 lg:text-left">
         <div className="text-2xl lg:text-3xl">支持的钱包</div>
         <div className="text-[#666666] mt-3 lg:mt-7 text-base">Supported wallet</div>
       </div>

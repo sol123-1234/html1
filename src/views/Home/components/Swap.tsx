@@ -108,20 +108,20 @@ const Swap = () => {
         </button>
       </div>
       <InputField token={independenceField} className="-mt-3" value={amount} setValue={setAmount} />
-      <div className="flex items-center justify-between text-base text-[#333333] mt-4 lg:mt-8">
+      <div className="flex items-center justify-between text-lg text-[#333333] mt-4 lg:mt-8">
         <div>结算期</div>
         <div className="flex items-center justify-end gap-2">
           <div className="flex items-center justify-center px-1 bg-primary rounded-xl">即时</div>
           <div>～30s</div>
         </div>
       </div>
-      <div className="flex items-center justify-between mt-4 text-sm text-black lg:text-lg lg:mt-8 flex-nowrap">
+      <div className="flex items-center justify-between mt-4 text-lg text-black lg:text-lg lg:mt-8 flex-nowrap">
         <div>池子AUSD余额</div>
         <div className="flex items-center justify-end gap-2 ">
           <div>{ausdData.poolBalance}</div>
         </div>
       </div>
-      <div className="flex items-center justify-between mt-2 text-sm text-black lg:text-lg lg:mt-8 flex-nowrap">
+      <div className="flex items-center justify-between mt-2 text-lg text-black lg:text-lg lg:mt-8 flex-nowrap">
         <div>池子USDT余额</div>
         <div className="flex items-center justify-end gap-2 ">
           <div>{usdtData.poolBalance}</div>
@@ -176,11 +176,11 @@ const InputField: React.FC<{
 }> = ({ token, className, value, setValue }) => {
   return (
     <div className={`bg-[#f0f0f0] p-5 rounded-xl ${className || ''}`}>
-      <div className="text-black ">余额： {formatNumber(token?.formatted || '0', 0, 14)}</div>
+      <div className="text-lg text-black">余额： {formatNumber(token?.formatted || '0', 0, 14)}</div>
       <div className="flex items-center justify-between mt-2">
         <Input
           type="number"
-          className="flex-1 bg-transparent outline-none"
+          className="flex-1 mt-2 bg-transparent outline-none"
           value={value}
           onChange={(e) => setValue(e)}
         />

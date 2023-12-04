@@ -176,7 +176,7 @@ const InputField: React.FC<{
 }> = ({ token, className, value, setValue }) => {
   return (
     <div className={`bg-[#f0f0f0] p-5 rounded-xl ${className || ''}`}>
-      <div className="text-black ">余额： {formatNumber(token?.formatted || 0, 0, 14)}</div>
+      <div className="text-black ">余额： {formatNumber(token?.formatted || '0', 0, 14)}</div>
       <div className="flex items-center justify-between mt-2">
         <Input
           type="number"

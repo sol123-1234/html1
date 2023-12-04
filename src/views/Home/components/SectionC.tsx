@@ -5,8 +5,8 @@ const SectionC = () => {
     <div className="bg-[#292929] overflow-hidden">
       <div className="lg:w-[1200px] m-auto lg:flex gap-[200px]">
         <div className="mt-8 text-center lg:mt-24 lg:text-left">
-          <div className="text-[#fff]   text-base lg:text-3xl">资产证明</div>
-          <div className="px-5 lg:px-0 text-[#C9C9C9] text-base lg:text-base mt-8 lg:mt-16 leading-8">
+          <div className="text-[#fff] text-2xl lg:text-3xl">资产证明</div>
+          <div className="px-5 lg:px-0 text-[#C9C9C9] text-xl mt-8 lg:mt-16 leading-8">
             铸造AUSD代币的资金,投资于六个月内到期的美国国债,
             费用是完全透明的。底层资产由第三方托管人持有，并用作担保AUSD代币的储备。
             所有与AUSD的铸造、销毁和REBASE相关的历史交易记录,可以随时在以太坊浏览器（AUSD

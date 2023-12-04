@@ -10,7 +10,7 @@ import useTokenApproval from '@/hooks/useTokenApproval'
 import { getSwapAddress } from '@/utils/addressHelpers'
 import useExchangeToA from '@/hooks/useExchangeToA'
 import useExchangeToU from '@/hooks/useExchangeToU'
-import { toWei } from '@/utils/formatBalance'
+import { formatNumber, toWei } from '@/utils/formatBalance'
 
 const tabs = [
   {
@@ -108,22 +108,22 @@ const Swap = () => {
         </button>
       </div>
       <InputField token={independenceField} className="-mt-3" value={amount} setValue={setAmount} />
-      <div className="flex items-center justify-between text-sm lg:text-base text-[#333333] mt-4 lg:mt-8">
+      <div className="flex items-center justify-between text-base text-[#333333] mt-4 lg:mt-8">
         <div>结算期</div>
         <div className="flex items-center justify-end gap-2">
           <div className="flex items-center justify-center px-1 bg-primary rounded-xl">即时</div>
           <div>～30s</div>
         </div>
       </div>
-      <div className="flex items-center justify-between text-sm lg:text-base text-[#8f8c8c] mt-4 lg:mt-8">
+      <div className="flex items-center justify-between mt-4 text-sm text-black lg:mt-8 flex-nowrap">
         <div>池子AUSD余额</div>
-        <div className="flex items-center justify-end gap-2">
+        <div className="flex items-center justify-end gap-2 ">
           <div>{ausdData.poolBalance}</div>
         </div>
       </div>
-      <div className="flex items-center justify-between text-sm lg:text-base text-[#8f8c8c] mt-2 lg:mt-8">
+      <div className="flex items-center justify-between mt-2 text-sm text-black lg:mt-8 flex-nowrap">
         <div>池子USDT余额</div>
-        <div className="flex items-center justify-end gap-2">
+        <div className="flex items-center justify-end gap-2 ">
           <div>{usdtData.poolBalance}</div>
         </div>
       </div>
@@ -151,7 +151,7 @@ const SwapTab: React.FC<{ selectedTab: number; setSelectedTab: React.Dispatch<Re
   setSelectedTab,
 }) => {
   return (
-    <div className="bg-[#292929] text-sm lg:text-xl p-1 lg:p-2 rounded-xl justify-between flex items-center">
+    <div className="bg-[#292929] text-base lg:text-xl p-1 lg:p-2 rounded-xl justify-between flex items-center">
       {tabs.map((item) => (
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
         <div
@@ -176,7 +176,7 @@ const InputField: React.FC<{
 }> = ({ token, className, value, setValue }) => {
   return (
     <div className={`bg-[#f0f0f0] p-5 rounded-xl ${className || ''}`}>
-      <div className=" text-[#616060] text-sm lg:text-base">余额： {token?.formatted || 0}</div>
+      <div className="text-black ">余额： {formatNumber(token?.formatted || 0, 0, 14)}</div>
       <div className="flex items-center justify-between mt-2">
         <Input
           type="number"
@@ -189,8 +189,8 @@ const InputField: React.FC<{
             <SpinLoading />
           ) : (
             <>
-              <img className="w-4 lg:w-[22px]" src={token.icon} alt="" />
-              <div className="text-[#292929] text-sm lg:text-xl">{token?.symbol || ''}</div>
+              <img className="w-4 lg:w-[24px]" src={token.icon} alt="" />
+              <div className="text-[#292929] text-base lg:text-xl">{token?.symbol || ''}</div>
             </>
           )}
         </div>

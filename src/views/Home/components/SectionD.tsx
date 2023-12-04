@@ -8,8 +8,7 @@ const SectionD = () => {
     <div>
       <div className="lg:w-[1200px] m-auto py-10 lg:py-[77px] lg:flex justify-between">
         <div className="flex-1 px-6 lg:px-0">
-          <div className="text-base lg:text-3xl">链上地址</div>
-
+          <div className="text-2xl lg:text-3xl">链上地址</div>
           <div className="flex items-baseline justify-between mt-5 lg:mt-[55px] pb-5 lg:pb-10 lg:border-none border-b border-solid border-[#C9C9C9]">
             {/* <div className="text-xs lg:text-2xl mr-[85px] lg:mr-[190px]">OUSG</div> */}
             <div className="flex-1">
@@ -46,7 +45,7 @@ const AddressCompose: React.FC<{
   name: string
   address: string
 }> = ({ name, address }) => (
-  <div className="flex items-center justify-between flex-1 text-base lg:text-base">
+  <div className="flex items-center justify-between flex-1 text-xl ">
     <div className="text-[#888888]">{name}</div>
     <div className="flex items-center gap-4 lg:gap-[30px]">
       <div>{address}</div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Address, useAccount, useBalance } from 'wagmi'
+import { Address, useAccount } from 'wagmi'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { isEqual } from 'lodash'
 import { Button, Input, SpinLoading, Toast } from 'antd-mobile'

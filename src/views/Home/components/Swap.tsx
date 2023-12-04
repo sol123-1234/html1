@@ -115,7 +115,7 @@ const Swap = () => {
           <div>～30s</div>
         </div>
       </div>
-      <div className="flex items-center justify-between mt-4 text-sm text-black lg:text-xl lg:mt-8 flex-nowrap">
+      <div className="flex items-center justify-between mt-4 text-sm text-black lg:text-lg lg:mt-8 flex-nowrap">
         <div>池子AUSD余额</div>
         <div className="flex items-center justify-end gap-2 ">
           <div>{ausdData.poolBalance}</div>

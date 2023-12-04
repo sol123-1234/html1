@@ -121,7 +121,7 @@ const Swap = () => {
           <div>{ausdData.poolBalance}</div>
         </div>
       </div>
-      <div className="flex items-center justify-between mt-2 text-sm text-black lg:text-xl lg:mt-8 flex-nowrap">
+      <div className="flex items-center justify-between mt-2 text-sm text-black lg:text-lg lg:mt-8 flex-nowrap">
         <div>池子USDT余额</div>
         <div className="flex items-center justify-end gap-2 ">
           <div>{usdtData.poolBalance}</div>

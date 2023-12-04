@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Address, useAccount } from 'wagmi'
+import { Address, useAccount, useBalance } from 'wagmi'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { isEqual } from 'lodash'
 import { Button, Input, SpinLoading, Toast } from 'antd-mobile'
@@ -34,7 +34,7 @@ const swapAddress = getSwapAddress()
 const Swap = () => {
   const { openConnectModal } = useConnectModal()
   const { isConnected } = useAccount()
-  const [selectedTab] = useState(0)
+  const [selectedTab, setSelectedTab] = useState(0)
 
   const usdtData = useUsdt()
   const ausdData = useAusd()
@@ -100,7 +100,7 @@ const Swap = () => {
   }
   return (
     <div className="p-5 bg-[#fff] rounded-xl  mt-8 lg:mt-[150px] shadow-md mb-5">
-      <SwapTab selectedTab={selectedTab} />
+      <SwapTab selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       <InputField token={dependenceField} className="mt-5" value={amount} setValue={setAmount} />
       <div className="flex justify-end">
         <button type="button" className="pr-5 -mt-2 bg-transparent border-none outline-none" onClick={changeToken}>
@@ -108,11 +108,23 @@ const Swap = () => {
         </button>
       </div>
       <InputField token={independenceField} className="-mt-3" value={amount} setValue={setAmount} />
-      <div className="flex items-center justify-between text-xs lg:text-base text-[#333333] mt-4 lg:mt-8">
+      <div className="flex items-center justify-between text-sm lg:text-base text-[#333333] mt-4 lg:mt-8">
         <div>结算期</div>
         <div className="flex items-center justify-end gap-2">
           <div className="flex items-center justify-center px-1 bg-primary rounded-xl">即时</div>
           <div>～30s</div>
+        </div>
+      </div>
+      <div className="flex items-center justify-between text-sm lg:text-base text-[#8f8c8c] mt-4 lg:mt-8">
+        <div>池子AUSD余额</div>
+        <div className="flex items-center justify-end gap-2">
+          <div>{ausdData.poolBalance}</div>
+        </div>
+      </div>
+      <div className="flex items-center justify-between text-sm lg:text-base text-[#8f8c8c] mt-2 lg:mt-8">
+        <div>池子USDT余额</div>
+        <div className="flex items-center justify-end gap-2">
+          <div>{usdtData.poolBalance}</div>
         </div>
       </div>
       <div className="mt-4 lg:mt-8">
@@ -134,12 +146,19 @@ const Swap = () => {
   )
 }
 
-const SwapTab: React.FC<{ selectedTab: number }> = ({ selectedTab }) => {
+const SwapTab: React.FC<{ selectedTab: number; setSelectedTab: React.Dispatch<React.SetStateAction<number>> }> = ({
+  selectedTab,
+  setSelectedTab,
+}) => {
   return (
     <div className="bg-[#292929] text-sm lg:text-xl p-1 lg:p-2 rounded-xl justify-between flex items-center">
       {tabs.map((item) => (
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
         <div
-          className={`flex-1 text-center py-3 ${selectedTab === item.id && 'bg-primary rounded-xl text-[#000]'}`}
+          onClick={() => setSelectedTab(item.id)}
+          className={`flex-1 text-center py-3 bg-none outline-none ${
+            selectedTab === item.id && 'bg-primary rounded-xl text-[#000]'
+          }`}
           key={item.id}
         >
           {item.name}
@@ -157,7 +176,7 @@ const InputField: React.FC<{
 }> = ({ token, className, value, setValue }) => {
   return (
     <div className={`bg-[#f0f0f0] p-5 rounded-xl ${className || ''}`}>
-      <div className=" text-[#989898] text-xs lg:text-base">余额： {token?.formatted || 0}</div>
+      <div className=" text-[#616060] text-sm lg:text-base">余额： {token?.formatted || 0}</div>
       <div className="flex items-center justify-between mt-2">
         <Input
           type="number"

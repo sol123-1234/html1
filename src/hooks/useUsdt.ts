@@ -1,10 +1,14 @@
 import { useAccount, useBalance, useToken } from "wagmi";
-import { getUsdtAddress } from "@/utils/addressHelpers";
+import { getSwapAddress, getUsdtAddress } from "@/utils/addressHelpers";
 import icon from '@/assets/USDT.png'
+import { formatNumber } from "@/utils/formatBalance";
 
 const usdtAddress = getUsdtAddress()
 
 export default function useUsdt() {
+
+  const swapAddress = getSwapAddress()
+
   const { address, isConnected } = useAccount()
 
   const { data: usdtToken, isLoading } = useToken({
@@ -19,10 +23,17 @@ export default function useUsdt() {
     enabled: isConnected
   })
 
+  const { data: pollUsdtBalance } = useBalance({
+    address: swapAddress,
+    token: usdtAddress,
+    watch: true
+  })
+
   return {
     ...usdtBalance,
     ...usdtToken,
     icon,
-    isLoading
+    isLoading,
+    poolBalance: formatNumber(pollUsdtBalance?.formatted || '0', 0, 0) || '0'
   }
 } 

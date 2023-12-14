@@ -20,6 +20,7 @@ export default function useEth() {
     ...tokenBalance,
     ...token,
     isLoading,
+    symbol: 'ETH',
     iconPath: `./eth.png`,
   }
 } 

@@ -24,7 +24,7 @@ export const Lending = () => {
   const mubi = useMyToken(getMubiAddress())
   const wbtc = useMyToken(getWbtcAddress())
 
-  const tokenList = [eth, usdt, mubi, wbtc]
+  const tokenList = [eth, wbtc, mubi, usdt]
 
   const dependenceField = ausdData
   const [independenceField, setIndependenceField] = useState(usdt)

@@ -20,7 +20,7 @@ const ChangeLang: React.FC = () => {
         onClick={() => {
           setVisible(true)
         }}
-        className="flex items-center justify-center text-[#000] gap-2 px-5 py-3 border-none rounded-full outline-none lg:py-5 lg:px-9 bg-primary"
+        className="flex h lg:text-xl items-center justify-center text-[#000] gap-2 px-5  border-none rounded-full outline-none py-3 lg:px-9 bg-primary"
       >
         {t('lang')}
       </button>
@@ -30,7 +30,7 @@ const ChangeLang: React.FC = () => {
           <div className="text-center text-[#000]">
             <button
               type="button"
-              className={`cursor-pointer mt-5 text-[#000] block outline-none rounded-3xl py-2 border-none w-full ${
+              className={`cursor-pointer mt-5 text-[#000] block outline-none rounded-3xl lg:text-xl py-2 border-none w-full ${
                 lang === 'zh-CN' && 'bg-[#f7ce46]'
               }`}
               onClick={() => onSet('zh-CN')}
@@ -39,7 +39,7 @@ const ChangeLang: React.FC = () => {
             </button>
             <button
               type="button"
-              className={`cursor-pointer mt-5 text-[#000] block outline-none rounded-3xl py-2  border-none w-full ${
+              className={`cursor-pointer mt-5 text-[#000] block outline-none rounded-3xl lg:text-xl py-2  border-none w-full ${
                 lang === 'en-US' && 'bg-[#f7ce46]'
               }`}
               onClick={() => onSet('en-US')}

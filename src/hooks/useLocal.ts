@@ -20,8 +20,11 @@ export default function useLocal() {
 
   const getLang = () => localStorage.getItem('lang');
 
+  const isCn = getLang() === 'zh-CN'
+
   return {
     setLang,
     getLang,
+    isCn
   };
 }

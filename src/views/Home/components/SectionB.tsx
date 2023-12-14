@@ -23,11 +23,14 @@ const SectionB = () => {
 
 const WalletList = () => {
   const list = [imtoken, metamsk, coinbase, gnosis, walletConnect, fireBlocks, zodia]
+  const { isCn } = useLocal()
+
   return (
     <>
       <div className="-mt-5 text-center lg:mt-20 lg:text-left">
-        <div className="text-2xl lg:text-3xl">支持的钱包</div>
-        <div className="text-[#666666] mt-3 lg:mt-7 text-base">Supported wallet</div>
+        {isCn && <div className="text-2xl lg:text-3xl">支持的钱包</div>}
+
+        <div className="text-[#666666] mt-3 lg:mt-7 text-xl">Supported wallet</div>
       </div>
       <div className="flex flex-wrap items-center justify-center gap-2 mt-5 lg:gap-0 lg:justify-between lg:mt-14">
         {list.map((item, index) => (
@@ -48,7 +51,7 @@ const Exchange = () => {
       <img className="w-[535px] hidden lg:block" src={`./safe-${getLang()}.png`} alt="" />
       <div className="text-center mt-9 lg:mt-16 lg:text-left">
         <div className="text-2xl text-center lg:text-right lg:text-3xl">{t('exchange1')}</div>
-        <div className="text-[#666666] leading-8 mt-7 lg:mt-14 text-base lg:text-base">{t('exchange2')}</div>
+        <div className="text-[#666666] leading-8 mt-7 lg:mt-14 text-xl">{t('exchange2')}</div>
       </div>
       <img className="w-full lg:hidden" src={`./safe-${getLang()}.png`} alt="" />
     </div>
@@ -57,17 +60,17 @@ const Exchange = () => {
 
 const HowWork = () => {
   const { t } = useTranslation()
-  const { getLang } = useLocal()
+  const { getLang, isCn } = useLocal()
   return (
     <div className="lg:mt-[133px] lg:flex gap-[164px] mt-8">
       <div className="text-center lg:text-left">
-        <div className="text-2xl lg:text-3xl">工作原理</div>
-        <div className="text-[#666666] mt-3 lg:mt-7 text-base lg:text-base">How it works</div>
-        <div className="text-[#333333] text-center lg:text-left leading-8 mt-7 lg:mt-14 text-base lg:text-base">
+        {isCn && <div className="text-2xl lg:text-3xl">工作原理</div>}
+        <div className="text-[#666666] mt-3 lg:mt-7 text-xl">How it works</div>
+        <div className="text-[#333333] text-center px-2.5 lg:px-0 lg:text-left leading-8 mt-7 lg:mt-14 text-xl">
           {t('how work')}
         </div>
       </div>
-      <img src={`./how-work-${getLang()}.png`} className="w-full lg:w-[600px]" alt="" />
+      <img src={`./how-work-${getLang()}.png`} className="w-full lg:w-[600px] mt-5" alt="" />
     </div>
   )
 }

@@ -1,9 +1,10 @@
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 import seven from '@/assets/seven.png'
 import one from '@/assets/one.png'
 import money from '@/assets/money.png'
 import free from '@/assets/free.png'
-import Swap from './Swap'
+import Function from './Funtion.tsx'
 
 const SectionAWrapper = styled.div`
   background-color: #292929;
@@ -18,41 +19,44 @@ const SectionAWrapper = styled.div`
 `
 
 const SectionA = () => {
+  const { t } = useTranslation()
   const showList = [
     {
       img: seven,
       title: '8.2%',
-      des: '7日APY',
+      des: t('7day APY'),
     },
     {
       img: one,
       title: '1:1',
-      des: '闪兑 usdt 1:1 ausd',
+      des: t('1:1 USDT-AUSD swap'),
     },
     {
       img: money,
       title: 'GAS',
-      des: '只有gas费',
+      des: t('only gas fees'),
     },
     {
       img: free,
       title: '0%',
-      des: '额外费用手续费',
+      des: t('Extra transaction fees'),
     },
   ]
   return (
     <SectionAWrapper className=" w-full lg:h-[960px] text-[#fff] bg-center bg-cover">
       <div className="lg:w-[1200px] m-auto lg:flex justify-between overflow-hidden">
         <div className="lg:w-[700px] text-center lg:text-left px-7">
-          <div className="mt-[44px] lg:mt-[150px] text-[26px] lg:text-[52px]">AUSD是自动增值的稳定币</div>
-          <div className="mt-6 text-base lg:mt-14 lg:text-lg">与美元1:1锚定，无需质押，且8.2%年化收益率。</div>
+          <div className="mt-[44px] lg:mt-[150px] text-[26px] lg:text-[45px]">
+            {t('AUSD - The Auto-Appreciating Treasury Bond Stablecoin')}
+          </div>
+          <div className="mt-6 text-base lg:mt-14 lg:text-lg">{t('anchoring')}</div>
           <div className="text-base leading-8 mt-9 lg:mt-24 lg:text-lg">
-            底层资产由到期日在6个月内的美国国债组成, AUSD 采用独特的 <br className="hidden lg:block" /> Rebase 机制.
+            {t('sixmonth')}
+            <br className="hidden lg:block" />
+            {t('sixmonth2')}
           </div>
-          <div className="text-base mt-9 lg:mt-24 lg:text-lg">
-            根据美国国债收益率,每秒增加用户的AUSD 的数量，并实现资产 持续增值。
-          </div>
-          <div className="flex items-center justify-between mt-[96px]">
+          <div className="text-base mt-9 lg:mt-24 lg:text-lg">{t('des1')}</div>
+          <div className="flex items-center justify-between mt-[85px]">
             {showList.map((item, index) => (
               <div key={index} className="flex flex-col items-center justify-center">
                 <img className="w-[30px] lg:w-[60px]" src={item.img} alt="" />
@@ -63,7 +67,7 @@ const SectionA = () => {
           </div>
         </div>
         <div className="flex-1 px-3 lg:px-0">
-          <Swap />
+          <Function />
         </div>
       </div>
     </SectionAWrapper>

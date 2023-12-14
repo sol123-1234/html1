@@ -16,7 +16,7 @@ export default function useUsdt() {
   })
 
 
-  const { data: usdtBalance } = useBalance({
+  const { data: usdtBalance, refetch } = useBalance({
     address,
     token: usdtAddress,
     watch: true,
@@ -34,6 +34,7 @@ export default function useUsdt() {
     ...usdtToken,
     icon,
     isLoading,
-    poolBalance: formatNumber(pollUsdtBalance?.formatted || '0', 0, 0) || '0'
+    poolBalance: formatNumber(pollUsdtBalance?.formatted || '0', 0, 0) || '0',
+    refetch
   }
 } 

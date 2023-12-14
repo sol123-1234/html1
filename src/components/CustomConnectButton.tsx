@@ -1,7 +1,9 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { useTranslation } from 'react-i18next'
 import change from '@/assets/change.png'
 
 export default function CustomConnectButton() {
+  const { t } = useTranslation()
   return (
     <ConnectButton.Custom>
       {({ account, chain, openAccountModal, openConnectModal, authenticationStatus, mounted }) => {
@@ -29,7 +31,7 @@ export default function CustomConnectButton() {
                     onClick={openConnectModal}
                     className="flex items-center justify-center gap-2 px-5 py-3 border-none rounded-full outline-none lg:py-5 lg:px-9 bg-primary"
                   >
-                    <div>链接钱包</div>
+                    <div>{t('Connect Wallet')}</div>
                     <img src={change} alt="" />
                   </button>
                 )

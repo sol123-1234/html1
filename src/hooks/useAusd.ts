@@ -19,7 +19,7 @@ export default function useAusd() {
     address: ausdAddress,
   })
 
-  const { data: ausdBalance } = useBalance({
+  const { data: ausdBalance, refetch } = useBalance({
     address,
     token: ausdAddress,
     // watch: true,
@@ -55,6 +55,7 @@ export default function useAusd() {
     isLoading,
     icon,
     formatted,
-    poolBalance: formatNumber(pollAusdBalance?.formatted || '0', 0, 0) || '0'
+    poolBalance: formatNumber(pollAusdBalance?.formatted || '0', 0, 0) || '0',
+    refetch
   }
 } 

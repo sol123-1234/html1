@@ -3,6 +3,7 @@ import { Address, useAccount } from 'wagmi'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { isEqual } from 'lodash'
 import { Button, Input, SpinLoading, Toast } from 'antd-mobile'
+import { useTranslation } from 'react-i18next'
 import exchange from '@/assets/swapChange.png'
 import useUsdt from '@/hooks/useUsdt'
 import useAusd from '@/hooks/useAusd'
@@ -12,29 +13,15 @@ import useExchangeToA from '@/hooks/useExchangeToA'
 import useExchangeToU from '@/hooks/useExchangeToU'
 import { formatNumber, toWei } from '@/utils/formatBalance'
 
-const tabs = [
-  {
-    id: 0,
-    name: '闪兑',
-  },
-  {
-    id: 1,
-    name: '铸造',
-  },
-  {
-    id: 2,
-    name: '赎回',
-  },
-]
-
 type TokenData = ReturnType<typeof useAusd>
 
 const swapAddress = getSwapAddress()
 
-const Swap = () => {
+export const Swap = () => {
+  const { t } = useTranslation()
+
   const { openConnectModal } = useConnectModal()
   const { isConnected } = useAccount()
-  const [selectedTab, setSelectedTab] = useState(0)
 
   const usdtData = useUsdt()
   const ausdData = useAusd()
@@ -84,7 +71,7 @@ const Swap = () => {
   // eslint-disable-next-line consistent-return
   const swap = async () => {
     if (amount > dependenceField.formatted) {
-      return Toast.show(`${dependenceField.symbol}余额不足`)
+      return Toast.show(`${dependenceField.symbol}${t('balance not enough')}`)
     }
 
     if (dependenceIsUsdt) {
@@ -92,6 +79,8 @@ const Swap = () => {
     } else {
       await exchangeToU(toWei(amount, ausdData.decimals))
     }
+    usdtData.refetch()
+    ausdData.refetch()
   }
 
   const changeToken = () => {
@@ -99,8 +88,7 @@ const Swap = () => {
     setDependenceAddress(independenceField.address)
   }
   return (
-    <div className="p-5 bg-[#fff] rounded-xl  mt-8 lg:mt-[150px] shadow-md mb-5">
-      <SwapTab selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+    <div>
       <InputField token={dependenceField} className="mt-5" value={amount} setValue={setAmount} />
       <div className="flex justify-end">
         <button type="button" className="pr-5 -mt-2 bg-transparent border-none outline-none" onClick={changeToken}>
@@ -109,20 +97,20 @@ const Swap = () => {
       </div>
       <InputField token={independenceField} className="-mt-3" value={amount} setValue={setAmount} />
       <div className="flex items-center justify-between text-lg text-[#333333] mt-4 lg:mt-8">
-        <div>结算期</div>
+        <div>{t('Settlement Time')}</div>
         <div className="flex items-center justify-end gap-2">
-          <div className="flex items-center justify-center px-1 bg-primary rounded-xl">即时</div>
+          <div className="flex items-center justify-center px-1 bg-primary rounded-xl">{t('Instant')}</div>
           <div>～30s</div>
         </div>
       </div>
       <div className="flex items-center justify-between mt-4 text-lg text-black lg:text-lg lg:mt-8 flex-nowrap">
-        <div>池子AUSD余额</div>
+        <div>{t('Pool AUSD Balance')}</div>
         <div className="flex items-center justify-end gap-2 ">
           <div>{ausdData.poolBalance}</div>
         </div>
       </div>
       <div className="flex items-center justify-between mt-2 text-lg text-black lg:text-lg lg:mt-8 flex-nowrap">
-        <div>池子USDT余额</div>
+        <div>{t('Pool USDT Balance')}</div>
         <div className="flex items-center justify-end gap-2 ">
           <div>{usdtData.poolBalance}</div>
         </div>
@@ -139,31 +127,9 @@ const Swap = () => {
             '--border-radius': '12px',
           }}
         >
-          {isConnected ? (!dependenceIsApprove ? '授权' : '闪兑') : '链接钱包'}
+          {isConnected ? (!dependenceIsApprove ? t('Authorize') : t('Swap')) : t('Connect Wallet')}
         </Button>
       </div>
-    </div>
-  )
-}
-
-const SwapTab: React.FC<{ selectedTab: number; setSelectedTab: React.Dispatch<React.SetStateAction<number>> }> = ({
-  selectedTab,
-  setSelectedTab,
-}) => {
-  return (
-    <div className="bg-[#292929] text-base lg:text-xl p-1 lg:p-2 rounded-xl justify-between flex items-center">
-      {tabs.map((item) => (
-        // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-        <div
-          onClick={() => setSelectedTab(item.id)}
-          className={`flex-1 text-center py-3 bg-none outline-none ${
-            selectedTab === item.id && 'bg-primary rounded-xl text-[#000]'
-          }`}
-          key={item.id}
-        >
-          {item.name}
-        </div>
-      ))}
     </div>
   )
 }
@@ -174,9 +140,12 @@ const InputField: React.FC<{
   value: string
   setValue: React.Dispatch<React.SetStateAction<string>>
 }> = ({ token, className, value, setValue }) => {
+  const { t } = useTranslation()
   return (
     <div className={`bg-[#f0f0f0] p-5 rounded-xl ${className || ''}`}>
-      <div className="text-lg text-black">余额： {formatNumber(token?.formatted || '0', 0, 14)}</div>
+      <div className="text-lg text-black">
+        {t('Balance')}： {formatNumber(token?.formatted || '0', 0, 14)}
+      </div>
       <div className="flex items-center justify-between mt-2">
         <Input
           type="number"
@@ -198,5 +167,3 @@ const InputField: React.FC<{
     </div>
   )
 }
-
-export default Swap

@@ -12,3 +12,7 @@ export const getSwapAddress = (chainId: number = env.chainId) => getAddressFromM
 export const getUsdtAddress = (chainId: number = env.chainId) => getAddressFromMap(addresses.usdt, chainId);
 
 export const getAusdAddress = (chainId: number = env.chainId) => getAddressFromMap(addresses.ausd, chainId);
+
+export const getMubiAddress = (chainId: number = env.chainId) => getAddressFromMap(addresses.mubi, chainId);
+
+export const getWbtcAddress = (chainId: number = env.chainId) => getAddressFromMap(addresses.wbtc, chainId);

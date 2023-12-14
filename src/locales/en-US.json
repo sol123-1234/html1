@@ -2,5 +2,21 @@
   "hello": "Hello World",
   "Failed": "fail",
   "View on site": "Check it out at {{site}}",
-  "Transaction Submit": "transaction submitted"
+  "Transaction Submit": "transaction submitted",
+  "lang": "Language",
+  "Swap": "Swap",
+  "Mint": "Mint",
+  "Redeem": "Redeem",
+  "anchoring": "1:1 USD-pegged with 8.2%+ annual yield, no collateral, gains from 5.5% treasury and 2.7%+ airdrops.",
+  "sixmonth": "Backed by U.S. Treasury bonds maturing within six months.",
+  "sixmonth2": "AUSD utilizes a unique rebase mechanism.",
+  "des1": "            AUSD's quantity grows every second based on U.S. Treasury bond yields, ensuring asset appreciation. It offers instant access, no lock-up, and free circulation.",
+  "how work": "Users deposit USDT, which the platform converts to dollars and invests in U.S. Treasury bonds. As the bond yields rise, your AUSD amount increases, enabling automatic wealth appreciation.",
+  "table1": "AUSD compared to other stablecoins (liquidity based on global trading volume, July 2023).",
+  "exchange1": "How are users' principal and returns secured?",
+  "exchange2": "The platform sets up a decentralized exchange with an AUSD/USDT pool, using a timelock mechanism and locking 2 million USDT of its own funds to ensure users can exchange AUSD for USDT anytime.",
+  "Proof of Assets": "Proof of Assets",
+  "c1": "Funds minting AUSD are invested in U.S. Treasury bonds maturing within six months,             with transparent fees. The underlying assets, held by a third-party custodian as reserves for AUSD,             ensure its backing. All historical transactions related to AUSD's minting, burning, and rebasing are             viewable on the Ethereum explorer (AUSD). Additionally, daily asset reports are uploaded on the AUSD             website for audit.",
+  "Instant": "Instant",
+  "Settlement Time": "Settlement Time"
 }

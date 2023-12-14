@@ -29,7 +29,7 @@ export default function CustomConnectButton() {
                   <button
                     type="button"
                     onClick={openConnectModal}
-                    className="flex items-center justify-center gap-2 px-5 py-3 border-none rounded-full outline-none lg:py-5 lg:px-9 bg-primary"
+                    className="flex items-center text-[#000] justify-center gap-2 px-5 py-3 border-none rounded-full outline-none lg:py-5 lg:px-9 bg-primary"
                   >
                     <div>{t('Connect Wallet')}</div>
                     <img src={change} alt="" />
@@ -40,7 +40,7 @@ export default function CustomConnectButton() {
                 <button
                   type="button"
                   onClick={openAccountModal}
-                  className="flex items-center justify-center gap-2 px-5 py-3 border-none rounded-full outline-none lg:py-5 lg:px-9 bg-primary"
+                  className="flex items-center text-[#000] justify-center gap-2 px-5 py-3 border-none rounded-full outline-none lg:py-5 lg:px-9 bg-primary"
                 >
                   {account.displayName}
                 </button>

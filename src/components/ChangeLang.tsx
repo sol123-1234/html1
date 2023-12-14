@@ -27,7 +27,7 @@ const ChangeLang: React.FC = () => {
       <Modal
         visible={visible}
         content={
-          <div className="text-center">
+          <div className="text-center text-[#000]">
             <button
               type="button"
               className={`cursor-pointer mt-5 block outline-none rounded-3xl py-2 border-none w-full ${

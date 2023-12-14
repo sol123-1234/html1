@@ -51,19 +51,19 @@ export const Lending = () => {
     <div>
       <InputField
         commingSoon={commingSoon}
-        token={dependenceField}
-        className="mt-5"
+        select
+        setVisible={setVisible}
+        token={independenceField}
         value={amount}
         setValue={setAmount}
+        className="mt-5"
       />
       <div className="flex justify-end">
         <div className="pr-5 bg-transparent border-none outline-none h-9" />
       </div>
       <InputField
         commingSoon={commingSoon}
-        select
-        setVisible={setVisible}
-        token={independenceField}
+        token={dependenceField}
         className="-mt-3"
         value={amount}
         setValue={setAmount}

@@ -9,19 +9,19 @@
     "build": "tsc && vite build --mode development",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "preview": "vite preview",
-    // "prepare": "npx husky install",
-    // "lint-staged": "lint-staged"
+    "prepare": "npx husky install",
+    "lint-staged": "lint-staged"
   },
-  // "lint-staged": {
-  //   "*.{vue,js,ts,jsx,tsx}": [
-  //     "yarn lint"
-  //   ]
-  // },
-  // "husky": {
-  //   "hooks": {
-  //     "pre-commit": "lint-staged"
-  //   }
-  // },
+  "lint-staged": {
+    "*.{vue,js,ts,jsx,tsx}": [
+      "yarn lint"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "dependencies": {
     "@rainbow-me/rainbowkit": "^1.0.4",
     "@tanstack/react-query": "^4.29.19",

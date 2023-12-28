@@ -34,6 +34,7 @@ export default function useUsdt() {
     ...usdtToken,
     icon,
     isLoading,
+    symbol: 'AUSD',
     poolBalance: formatNumber(pollUsdtBalance?.formatted || '0', 0, 0) || '0',
     refetch
   }

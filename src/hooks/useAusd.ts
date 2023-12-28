@@ -17,6 +17,9 @@ export default function useAusd() {
 
   const { data: ausdToken, isLoading } = useToken({
     address: ausdAddress,
+    onError(err) {
+      console.error(err)
+    },
   })
 
   const { data: ausdBalance, refetch } = useBalance({

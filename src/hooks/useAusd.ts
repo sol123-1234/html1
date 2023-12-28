@@ -8,6 +8,7 @@ import { formatNumber } from "@/utils/formatBalance";
 
 const ausdAddress = getAusdAddress()
 const swapAddress = getSwapAddress()
+console.info('ausdAddress', ausdAddress);
 
 export default function useAusd() {
 

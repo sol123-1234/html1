@@ -24,7 +24,8 @@ export const Swap = () => {
 
   const [visible, setVisible] = useState(false)
   const { openConnectModal } = useConnectModal()
-  const { isConnected, address } = useAccount()
+  const { isConnected } = useAccount()
+  const [isDependence, setIsDependence] = useState(true)
 
   const usdtData = useUsdt()
   const ausdData = useAusd()
@@ -53,10 +54,10 @@ export const Swap = () => {
   const [dependenceFieldAddress, setDependenceAFieldAddress] = useState<Address>(ausd.address)
   const [independenceFieldAddress, setIndependenceFieldAddress] = useState<Address>(usdt.address)
 
-  const tokenList = [usdt, coinbase]
+  const tokenList = [ausd, usdt, coinbase]
 
-  const dependenceField = [ausd, ...tokenList].filter((token) => isEqual(dependenceFieldAddress, token?.address))[0]
-  const independenceField = [ausd, ...tokenList].filter((token) => isEqual(independenceFieldAddress, token?.address))[0]
+  const dependenceField = tokenList.filter((token) => isEqual(dependenceFieldAddress, token?.address))[0]
+  const independenceField = tokenList.filter((token) => isEqual(independenceFieldAddress, token?.address))[0]
 
   const dependenceIsUsdt = isEqual(dependenceField?.address, usdtData.address)
 
@@ -66,7 +67,10 @@ export const Swap = () => {
 
   const haveCoinBase =
     isEqual(dependenceField?.address, getCoinbaseAddress()) || isEqual(independenceField?.address, getCoinbaseAddress())
-
+  const haveAusd =
+    isEqual(dependenceField?.address, getAusdAddress()) || isEqual(independenceField?.address, getAusdAddress())
+  const haveUsdt =
+    isEqual(dependenceField?.address, getUsdtAddress()) || isEqual(independenceField?.address, getUsdtAddress())
   const onClick = async () => {
     if (!isConnected) {
       openConnectModal()
@@ -88,11 +92,20 @@ export const Swap = () => {
   }
 
   const onSetToken = (token: MyTokenData) => {
-    if (isAusd(dependenceField.address)) {
-      setIndependenceFieldAddress(token?.address)
-    } else {
-      setDependenceAFieldAddress(token?.address)
+    if (dependenceField.address === token.address || independenceField.address === token.address) {
+      changeToken()
+      setAmount('')
+      setVisible(false)
+      return
     }
+    if (isDependence) {
+      if (dependenceField.address === token.address) return
+      setDependenceAFieldAddress(token.address)
+    } else {
+      if (independenceField.address === token.address) return
+      setIndependenceFieldAddress(token.address)
+    }
+
     setAmount('')
     setVisible(false)
   }
@@ -117,20 +130,17 @@ export const Swap = () => {
     setDependenceAFieldAddress(independenceField.address)
   }
 
-  const isAusd = (address: Address) => {
-    return address === ausdData.address
-  }
-
   return (
     <div>
       <InputField
+        setDependence={() => setIsDependence(true)}
         haveCoinBase={haveCoinBase}
-        select={!isAusd(dependenceField?.address)}
+        select
         token={dependenceField}
         className="mt-5"
         value={amount}
         setValue={setAmount}
-        setVisible={!isAusd(dependenceField?.address) ? setVisible : null}
+        setVisible={setVisible}
       />
       <div className="flex justify-end">
         <button type="button" className="pr-5 -mt-2 bg-transparent border-none outline-none" onClick={changeToken}>
@@ -138,13 +148,14 @@ export const Swap = () => {
         </button>
       </div>
       <InputField
+        setDependence={() => setIsDependence(false)}
         haveCoinBase={haveCoinBase}
-        select={!isAusd(independenceField?.address)}
+        select
         token={independenceField}
         className="-mt-3"
         value={amount}
         setValue={setAmount}
-        setVisible={!isAusd(independenceField?.address) ? setVisible : null}
+        setVisible={setVisible}
       />
       <div className="flex items-center justify-between text-lg text-[#333333] mt-4 lg:mt-8">
         <div>{t('Settlement Time')}</div>
@@ -153,13 +164,15 @@ export const Swap = () => {
           <div>～30s</div>
         </div>
       </div>
-      <div className="flex items-center justify-between mt-4 text-lg text-black lg:text-lg lg:mt-8 flex-nowrap">
-        <div>{t('Pool AUSD Balance')}</div>
-        <div className="flex items-center justify-end gap-2 ">
-          <div>{ausdData.poolBalance}</div>
+      {haveAusd && (
+        <div className="flex items-center justify-between mt-4 text-lg text-black lg:text-lg lg:mt-8 flex-nowrap">
+          <div>{t('Pool AUSD Balance')}</div>
+          <div className="flex items-center justify-end gap-2 ">
+            <div>{ausdData.poolBalance}</div>
+          </div>
         </div>
-      </div>
-      {!haveCoinBase && (
+      )}
+      {haveUsdt && (
         <div className="flex items-center justify-between mt-2 text-lg text-black lg:text-lg lg:mt-8 flex-nowrap">
           <div>{t('Pool USDT Balance')}</div>
           <div className="flex items-center justify-end gap-2 ">
@@ -215,9 +228,10 @@ const InputField: React.FC<{
   token: MyTokenData
   className?: string
   value: string
+  setDependence: () => void
   setValue: React.Dispatch<React.SetStateAction<string>>
   setVisible?: React.Dispatch<React.SetStateAction<boolean>>
-}> = ({ token, className, value, setValue, haveCoinBase, select = false, setVisible = null }) => {
+}> = ({ token, className, value, setValue, setDependence, haveCoinBase, select = false, setVisible = null }) => {
   const { t } = useTranslation()
   const [formatted, setFormateed] = useState(token?.formatted || '0')
   const { address } = useAccount()
@@ -229,6 +243,7 @@ const InputField: React.FC<{
   const handleOpenSelect = () => {
     if (!select) return
     setVisible?.(true)
+    setDependence()
   }
 
   const dsr: BigNumber = useMemo(() => {

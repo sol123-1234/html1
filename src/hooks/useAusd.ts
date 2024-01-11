@@ -51,7 +51,6 @@ export default function useAusd() {
     }
   }, 1000);
 
-
   return {
     ...ausdBalance,
     ...ausdToken,

@@ -100,7 +100,12 @@ export const Lending = () => {
         content={
           <div>
             {tokenList.map((item) => (
-              <button type="button" className="flex items-center w-full my-3 gap-x-4 " onClick={() => onSetToken(item)}>
+              <button
+                type="button"
+                key={item.address}
+                className="flex items-center w-full my-3 gap-x-4 "
+                onClick={() => onSetToken(item)}
+              >
                 <img src={item.iconPath ?? ''} alt="" className="w-4 lg:w-[24px] mr-5" />
                 <div className="text-[#292929] text-base lg:text-xl">{item.symbol ?? ''}</div>
               </button>

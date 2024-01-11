@@ -18,5 +18,9 @@ export default {
   mubi: {
     11155111: '0x540ce67610A9e5772888b69eb81D68D3D07c0DBF',
     1: '0x38e382f74dfb84608f3c1f10187f6bef5951de93'
+  },
+  coinbase: {
+    11155111: '0xea231312580ffdbeb8b3e427c19c308bddff8a7f',
+    1: '0x0aC09f20Ce322449d7Ffb14B8292DFDe2985f232'
   }
 } as const satisfies Record<string, Record<number, `0x${string}`>>;

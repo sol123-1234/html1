@@ -16,3 +16,5 @@ export const getAusdAddress = (chainId: number = env.chainId) => getAddressFromM
 export const getMubiAddress = (chainId: number = env.chainId) => getAddressFromMap(addresses.mubi, chainId);
 
 export const getWbtcAddress = (chainId: number = env.chainId) => getAddressFromMap(addresses.wbtc, chainId);
+
+export const getCoinbaseAddress = (chainId: number = env.chainId) => getAddressFromMap(addresses.coinbase, chainId);

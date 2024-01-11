@@ -89,7 +89,7 @@ export const Swap = () => {
 
   const onSetToken = (token: MyTokenData) => {
     if (isAusd(dependenceField.address)) {
-      setDependenceAFieldAddress(token?.address)
+      setIndependenceFieldAddress(token?.address)
     } else {
       setDependenceAFieldAddress(token?.address)
     }

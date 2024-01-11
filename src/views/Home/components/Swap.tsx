@@ -125,6 +125,7 @@ export const Swap = () => {
   return (
     <div>
       <InputField
+        haveCoinBase={haveCoinBase}
         select={!isAusd(dependenceField.address)}
         token={dependenceField}
         className="mt-5"
@@ -138,6 +139,7 @@ export const Swap = () => {
         </button>
       </div>
       <InputField
+        haveCoinBase={haveCoinBase}
         select={!isAusd(independenceField.address)}
         token={independenceField}
         className="-mt-3"
@@ -209,13 +211,14 @@ export const Swap = () => {
 }
 
 const InputField: React.FC<{
+  haveCoinBase: boolean
   select?: boolean
   token: MyTokenData
   className?: string
   value: string
   setValue: React.Dispatch<React.SetStateAction<string>>
   setVisible?: React.Dispatch<React.SetStateAction<boolean>>
-}> = ({ token, className, value, setValue, select = false, setVisible = null }) => {
+}> = ({ token, className, value, setValue, haveCoinBase, select = false, setVisible = null }) => {
   const { t } = useTranslation()
   const [formatted, setFormateed] = useState(token.formatted)
   const { address } = useAccount()
@@ -254,7 +257,7 @@ const InputField: React.FC<{
   }, [token.address, formatted, dsr])
 
   const setAmount = (e: string) => {
-    if (isEqual(getCoinbaseAddress(), token.address)) {
+    if (haveCoinBase) {
       Toast.show('commming soon')
     } else {
       setValue(e)

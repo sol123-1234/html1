@@ -65,15 +65,15 @@ export const Swap = () => {
 
   const [amount, setAmount] = useState('')
 
+  const haveCoinBase =
+    isEqual(dependenceField.address, getCoinbaseAddress()) || isEqual(independenceField.address, getCoinbaseAddress())
+
   const onClick = async () => {
     if (!isConnected) {
       openConnectModal()
       return
     }
-    if (
-      isEqual(dependenceField.address, getCoinbaseAddress()) ||
-      isEqual(independenceField.address, getCoinbaseAddress())
-    ) {
+    if (haveCoinBase) {
       Toast.show('commming soon')
       return
     }
@@ -158,12 +158,14 @@ export const Swap = () => {
           <div>{ausdData.poolBalance}</div>
         </div>
       </div>
-      <div className="flex items-center justify-between mt-2 text-lg text-black lg:text-lg lg:mt-8 flex-nowrap">
-        <div>{t('Pool USDT Balance')}</div>
-        <div className="flex items-center justify-end gap-2 ">
-          <div>{usdtData.poolBalance}</div>
+      {!haveCoinBase && (
+        <div className="flex items-center justify-between mt-2 text-lg text-black lg:text-lg lg:mt-8 flex-nowrap">
+          <div>{t('Pool USDT Balance')}</div>
+          <div className="flex items-center justify-end gap-2 ">
+            <div>{usdtData.poolBalance}</div>
+          </div>
         </div>
-      </div>
+      )}
       <div className="mt-4 lg:mt-8">
         <Button
           loading={ausdApproving || usdtApproving || exchangeToALoading || exchangeToULoading}
